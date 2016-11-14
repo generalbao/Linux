@@ -1,6 +1,46 @@
+2016年11月14日16:47:28
 
-
-
+1 
 zip -r xx.rar xx 把 xx 压缩成xx.rar -r  递归
-
 uzip xx.rar  解压
+
+2 tar ！！！！   c create(创建压缩) x 解压 t 查看tarfile的文件 只能三选一  v 压缩过程中显示   f 后面加d档名  z gzip j bzip2
+
+
+解压文件到指定目录：tar -zxvf /home/zjx/aa.tar.gz -C /home/zjx/pf
+tar [-cxtzjvfpPN] 文件与目录....
+参数：
+-c ：建立一个压缩文件的参数指令(create 的意思)；
+-x ：解开一个压缩文件的参数指令！
+-t ：查看tarfile 里面的文件！
+特别注意，在参数的下达中，c/x/t 仅能存在一个！不可同时存在！
+因为不可能同时压缩与解压缩。
+-z ：是否同时具有gzip 的属性？亦即是否需要用gzip 压缩？
+
+-j ：是否同时具有bzip2 的属性？亦即是否需要用bzip2 压缩？
+
+-v ：压缩的过程中显示文件！这个常用，但不建议用在背景执行过程！
+
+-f ：使用档名，请留意，在f 之后要立即接档名喔！不要再加参数！
+
+例如使用『tar -zcvfP tfile sfile』就是错误的写法，要写成
+
+『tar -zcvPf tfile sfile』才对喔！
+
+
+范例：
+
+范例一：将整个/etc 目录下的文件全部打包成为/tmp/etc.tar
+
+[root@linux ~]# tar -cvf /tmp/etc.tar /etc <==仅打包，不压缩！
+
+[root@linux ~]# tar -zcvf /tmp/etc.tar.gz /etc <==打包后，以gzip 压缩
+
+[root@linux ~]# tar -jcvf /tmp/etc.tar.bz2 /etc <==打包后，以bzip2 压缩
+
+# 特别注意，在参数f 之后的文件档名是自己取的，我们习惯上都用.tar 来作为辨识。
+
+# 如果加z 参数，则以.tar.gz 或.tgz 来代表gzip 压缩过的tar file ～
+
+
+
