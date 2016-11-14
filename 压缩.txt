@@ -1,0 +1,6 @@
+
+
+
+zip -r xx.rar xx 把 xx 压缩成xx.rar -r  递归
+
+uzip xx.rar  解压
