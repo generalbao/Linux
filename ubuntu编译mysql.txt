@@ -4,7 +4,7 @@
 （1）安装编译源码需要的包
 sudo apt-get install make cmake gcc g++ bison libncurses5-dev
 
-（2）下载并解压缩
+（2）下载并解压缩         到官网下载 source code !!!!!!!! source code !! source code 别下载错了
 mysql-5.6.26.tar.gz
 tar -zxvf mysql-5.6.26.tar.gz
 cd mysql-5.6.26
