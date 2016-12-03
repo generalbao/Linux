@@ -1,0 +1,26 @@
+2016年12月3日10:00:11
+
+pkg-config程序是干什么用的？简单的说就是向用户向程序提供相应库的路径、版本号等信息的程序。
+譬如说我们运行以下命令：
+pkg-config  查看gcc的CFLAGS参数
+
+$pkg-config --libs --cflags opencv
+
+
+会显示如下信息：
+-I/usr/include/opencv -lcxcore -lcv -lhighgui -lcvaux
+各位看官，你看这不就是我们用gcc编译连接时CFLAGS的参数吗？
+
+因此当我们需要编译连接某个库时，我们只需要把上面那行加入gcc 的参数里面即可。
+
+这也是configure的作用，它会检查你需要的包，产生相应的信息。
+那pkg-config从哪儿知道这些信息的呢？它是从包名为xxx.pc这个文件中查找到的。拿上面那个例子说，它是从opencv.pc这个文件中查知的。
+那pkg-config 又怎么会知道opencv.pc这个文件呢？
+
+下面我们看一下pkg-config是怎样工作的。
+缺省情况下，pkg-config首 先在prefix/lib/pkgconfig/中查找相关包（譬如opencv）对应的相应的文件（opencv.pc）。
+在linux上上述路径名为 /usr/lib/pkconfig/。若是没有找到，它也会到PKG_CONFIG_PATH这个环境变量所指定的路径下去找。
+若是没有找到，它就会报 错
+
+设置环境变量PKG_CONFIG_PATH方法举例如下：
+export PKG_CONFIG_PATH=/cv/lib:$PKG_CONFIG_PATH
