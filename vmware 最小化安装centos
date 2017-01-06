@@ -1,0 +1,7 @@
+2017年1月6日16:21:18
+
+http://mirrors.aliyun.com/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso
+因为是最小化安装 ,
+ifconfig 不能用  要安装 net-tools
+yum install net-tools 提示不能联网
+ 解决办法 vim    /etc/sysconfig/network-scripts/ifcfg-enoxxxxxx      onboot=no 改为yes   搞定
