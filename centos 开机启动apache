@@ -1,0 +1,8 @@
+2017年1月9日14:12:52
+
+  systemctl enable httpd    
+  
+  chkconfig --list 查看会发现没有
+  
+  systemctl list-unit-files  或者  systemctl list-dependencies
+  
