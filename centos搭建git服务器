@@ -1,0 +1,43 @@
+2017年2月9日13:48:40
+ 
+ 1 没有git的 先装 git  yum install git -y
+ 2 创建git用户    useradd git
+ 3 
+创建SSH Key，私钥和公钥
+$ ssh-keygen -t rsa -C "user@email.com"
+你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，无需设置密码。
+如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，
+id_rsa.pub是公钥，可以放心地告诉任何人。
+添加SSH Key
+将本地生成的id_rsa.pub内容追加到git服务器git用户的~/.ssh/authorized_keys
+ssh服务端配置
+$ sudo vim /etc/ssh/sshd_config
+RSAAuthentication yes 
+PubkeyAuthentication yes
+AuthorizedKeysFile      /home/git/.ssh/authorized_keys
+
+4 初始化git仓库
+$ cd ~
+
+$ mkdir project.git
+
+$ git init --bare project.git
+
+5 禁用git用户shell登录
+出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：
+
+git:x:1001:1001:,,,:/home/git:/bin/bash
+
+改为：
+
+git:x:1001:1001:,,,:/home/git:/usr/local/bin/git-shell
+
+这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。
+
+克隆远程仓库
+现在，可以通过git clone命令克隆远程仓库了，在各自的电脑上运行：
+
+$ git clone git@xxx:/home/git/project.git   
+Cloning into 'project'...   
+warning: You appear to have cloned an empty repository.
+ 
