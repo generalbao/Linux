@@ -1,0 +1,24 @@
+2017年2月10日15:52:43
+
+ curl -R -O http://www.lua.org/ftp/lua-5.3.1.tar.gz  也可以wget xxx
+tar zxf lua-5.3.1.tar.gz  
+cd lua-5.3.1  
+make linux test
+
+可能出现的问题：
+gcc -std=gnu99 -O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_USE_LINUX    -c -o lua.o lua.c  
+lua.c:80:31: 致命错误：readline/readline.h：没有那个文件或目录  
+ #include <readline/readline.h>  
+                               ^  
+编译中断。  
+make[2]: *** [lua.o] 错误 1  
+make[2]: 离开目录“/home/jason/tools/lua-5.3.1/src”  
+make[1]: *** [linux] 错误 2  
+make[1]: 离开目录“/home/jason/tools/lua-5.3.1/src”  
+make: *** [linux] 错误 2  
+
+解决办法：
+安装： libtermcap-devel ncurses-devel libevent-devel readline-devel
+
+yum install libtermcap-devel ncurses-devel libevent-devel readline-devel  
+
