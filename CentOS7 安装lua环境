@@ -21,4 +21,4 @@ make: *** [linux] 错误 2
 安装： libtermcap-devel ncurses-devel libevent-devel readline-devel
 
 yum install libtermcap-devel ncurses-devel libevent-devel readline-devel  
-
+最后 make install
