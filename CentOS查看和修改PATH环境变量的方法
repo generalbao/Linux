@@ -1,0 +1,30 @@
+2017年2月11日10:15:42
+
+  修改方法一：
+export PATH=/usr/local/mongodb/bin:$PATH
+//配置完后可以通过echo $PATH查看配置结果。
+生效方法：立即生效
+有效期限：临时改变，只能在当前的终端窗口中有效，当前窗口关闭后就会恢复原有的path配置
+用户局限：仅对当前用户
+
+修改方法二:
+通过修改environment文件:
+vim /etc/environment
+在PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"中加入“:/usr/local/mongodb/bin”
+生效方法：系统重启
+有效期限：永久有效
+用户局限：对所有用户
+
+
+修改方法三:
+通过修改profile文件:
+vim /etc/profile
+/export PATH //找到设置PATH的行，添加
+export PATH=/usr/local/mongodb/bin:$PATH
+生效方法：系统重启
+有效期限：永久有效
+用户局限：对所有用户
+
+如果修改了/etc/profile，那么编辑结束后执行source profile 或 执行点命令 ./profile,PATH的值就会立即生效了。！！！！！！！！！
+这个方法的原理就是再执行一次/etc/profile shell脚本，注意如果用sh /etc/profile是不行的，因为sh是在子shell进程中执行的，
+即使PATH改变了也不会反应到当前环境中，但是source是在当前 shell进程中执行的，所以我们能看到PATH的改变。
