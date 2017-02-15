@@ -1,0 +1,44 @@
+2017年2月15日14:00:20
+
+有一种方式是：下载rabbitmq-server-generic-unix压缩包，是不用编译的。是已经编译好的源码了
+
+2222
+源码编译安装
+
+RabbitMQ是基于Erlang的，所以首先必须配置Erlang环境。
+
+从Erlang的官网 http://www.erlang.org/download.html 下载最新的erlang安装包，我下载的版本是 otp_src_R14B03.tar.gz 。
+
+然后：
+
+$ tar xvzf otp_src_R14B03.tar.gz
+$ cd otp_src_R14B03
+$ ./configure
+
+装完Erlang，开始安装RabbitMQ-Server。
+
+主要参考官方文档：http://www.rabbitmq.com/build-server.html
+需要安装一个比较新的Python版本。安装略。
+
+需要安装simplejson。从此处下载最新的版本： http://pypi.python.org/pypi/simplejson#downloads 。我下载的版本是 simplejson-2.2.1.tar.gz
+
+$ tar xvzf simplejson-2.2.1.tar.gz
+$ cd simplejson-2.2.1
+$ sudo python setup.py install
+
+然后安装RabbitMQ Server。从此处下载源代码版本的RabbitMQ： http://www.rabbitmq.com/server.html。我下载的版本是 rabbitmq-server-2.6.1.tar.gz
+
+$ tar xvzf rabbitmq-server-2.6.1.tar.gz
+$ cd rabbitmq-server-2.6.1
+$ make
+# TARGET_DIR=/usr/local SBIN_DIR=/usr/local/sbin MAN_DIR=/usr/local/man make install 
+在sbin/目录下出现了三个命令：
+rabbitmqctl  rabbitmq-env  rabbitmq-server
+
+安装成功。
+
+运行
+找到sbin/目录，运行程序：
+/usr/local/sbin/rabbitmq-server –detached 
+停止程序：
+/usr/local/sbin/rabbitmqctl stop 
