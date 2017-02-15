@@ -1,0 +1,12 @@
+2017年2月15日11:09:59
+
+ wget http://erlang.org/download/otp_src_19.2.tar.gz
+ tar -xvf xx
+ cd xx
+ ./configure --prefix=/usr/local/erlang --without-javac
+ 
+ 报错 No curses library functions found
+ yum install ncurses-devel
+ 
+ 
+ make &&　make install
