@@ -1,0 +1,3 @@
+yum -y list java*
+yum install java-1.8.0-openjdk.x86_64 -y
+yum install java-1.8.0-openjdk-devel -y
