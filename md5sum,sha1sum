@@ -1,0 +1,8 @@
+用于对文件进行校验和
+
+md5sum anaconda-ks.cfg 
+1c0b0e482ea5daccb2b6178a8731defe  anaconda-ks.cfg
+
+
+sha1sum anaconda-ks.cfg 
+6e530840f7d17101c01b81a62483b523c4f9c104  anaconda-ks.cfg
